@@ -37,7 +37,7 @@ class Post
 
             $files = File::files(resource_path("posts"));
 
-        collect($files);
+            collect($files);
     
         
             $posts=array_map(function($file) {
@@ -52,28 +52,27 @@ class Post
         
                 );
             }, $files);
-    
+            return $posts;
             // ->sortByDesc("date")
         });
         
     
     }
-
     public static function find($slug){
 
         return static::all()->firstWhere('slug', $slug);
 
-        // if(! file_exists($path =  __DIR__ . resource_path("posts/{$slug}.html" ))){
+    }
 
-        //    throw new ModelNotFoundException();
-        // }
+    public static function findOrFail($slug){
 
-        // $post = cache()->remember("posts.{$slug}", 1200, function() use ($path){
-        //     return file_get_contents($path);
+        $post = static::find($slug);
 
-        // });
+        if(! $post){
 
-        // return $post = file_get_contents($path);
-
+            throw new ModelNotFoundException();
+        }
+         
+        return $post;
     }
 }

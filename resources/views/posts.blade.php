@@ -1,13 +1,10 @@
-@extends('layout')
+<x-layout>
 
-@section('content')
-
-
-    @foreach($posts as $post) 
+    @foreach ($posts as $post) 
         <article>
 
             <h1>
-                <a href="/posts/ {{$posts->slug }}">
+                <a href="/posts/ {{ $post -> slug }}">
 
                     {{ $post->title }}
 
@@ -16,14 +13,13 @@
             </h1> 
 
             <div>
-                <a href="/posts/{{ $post->body }}> ">
 
-                    {{ $post->body }}
-                
-                </a>
+                {{ $post->body }}
+    
             </div>
 
         </article>
     @endforeach
 
-@endsection
+</x-layout>
+
