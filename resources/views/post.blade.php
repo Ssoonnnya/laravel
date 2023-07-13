@@ -1,5 +1,4 @@
-@extends('layout')
-
+@extends('posts')
 @section('content')
     <article>
 
