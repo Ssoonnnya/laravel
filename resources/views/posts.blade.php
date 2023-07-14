@@ -3,7 +3,7 @@
         <article>
 
             <h1>
-                <a href="/posts/ {{ $post -> id }}">
+                <a href="/posts/ {{ $post -> slug }}">
 
                     {{ $post->title }}
 
@@ -11,10 +11,12 @@
             
             </h1> 
 
-            <div>
+            <p>
+                <a href='#'>{{ $post->user->name }}</a>in<a herf ='/categoties/{{ $post->category->slug}}'> {{ $post->category->name }} </a>
+            </p>
 
-                {{ $post->body }}
-    
+            <div>
+                {{ $post->excerpt }}
             </div>
 
         </article>
