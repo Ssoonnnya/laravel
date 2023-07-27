@@ -12,7 +12,7 @@
             </h1> 
 
             <p>
-                <a href='#'>{{ $post->user->name }}</a>in<a herf ='/categoties/{{ $post->category->slug}}'> {{ $post->category->name }} </a>
+                <a href='#'>{{ $post->author->name }}</a>in<a herf ='/categoties/{{ $post->category->slug}}'> {{ $post->category->name }} </a>
             </p>
 
             <div>
