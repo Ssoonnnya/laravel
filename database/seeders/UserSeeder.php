@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::factory(10)->create([
+        $user = User::factory(20)->create([
             'name' => 'John Doe'
         ]);
     }
