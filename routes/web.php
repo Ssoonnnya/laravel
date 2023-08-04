@@ -17,7 +17,8 @@ use App\Models\Post;
 Route::get('/', function () {
 
     return view('posts', [
-        'posts' => Post::latest()->with('category', 'author')->get()
+        'posts' => Post::latest()->with('category', 'author')->get(),
+        'categories' => Category::all()
     ]);
 });
 
@@ -39,6 +40,6 @@ Route::get('<author/{author}', function(User $author){
         'posts' => $author->posts
     ]);
 });
-    
+
 });
 
