@@ -1,4 +1,4 @@
-<<x-layout>
+<x-layout>
 
     @include ('post-header')
 
