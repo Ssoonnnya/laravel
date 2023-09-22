@@ -21,8 +21,8 @@
                 @auth
 
                     <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</span>
-                    <form method="POST" acrion="/logout">
-                    @csrf
+                    <form method="POST" action="/logout">
+                        @csrf
                         <button type="submit" class="text-xs font-semibold text-blue-500 ml-6">Log Out</button>
                     </form>
 
@@ -30,7 +30,7 @@
 
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
 
-                    <a href="/register" class="ml-6 text-xs font-bold uppercase">Log In</a>
+                    <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
 
 
                 @endauth
