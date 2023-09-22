@@ -48,6 +48,10 @@
                     <div class="space-y-4 lg:text-lg leading-loose">{{!! $post->body !!}}</div>
                 </div>
             </article>
+
+            <section class="col-span-8 col-start-5 mt-10">
+                <x-post-comment/>
+            </section>
         </main>
     </section>
 </x-layout>
