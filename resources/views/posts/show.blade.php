@@ -6,7 +6,7 @@
                     <img src="/images/illustration-1.png" alt="" class="rounded-xl">
 
                     <p class="mt-4 block text-gray-400 text-xs">
-                        Published <time>{{ $post->created_at->diffForHumans() }}</time>
+                        Published <time>{{ $post->created_at}}</time>
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
@@ -47,11 +47,36 @@
 
                     <div class="space-y-4 lg:text-lg leading-loose">{{!! $post->body !!}}</div>
                 </div>
-            </article>
 
             <section class="col-span-8 col-start-5 mt-10">
-                <x-post-comment/>
+
+                <x-panel>
+
+
+                <form mathod='POST' action='#'>
+                    @csrf
+
+                    <header clasws='flex items-center'>
+                        <img src="https://i.pravatar.cc/60?id={{ auth()->id() }}" alt="" width="60" height="60" class="rounded-xl">
+                        <h3 class='ml-4'>Want to participate?</h3>
+                    </header>
+                    <div class="mt-6">
+                        <textarea name='body' class="w-full text-sm focus:outline:none focus-ring" rows='5' placeholder='Quick, thong of something to say!'></textarea>
+                    </div>
+                    <div class='flex justify-end mt-6 pt-6 border-t border-gray-200 pt-6'>
+                        <button type="submit" class='bg-blue-500 text-white uppercase font-semibold text-xs py-2 px-10 rounded-2xl hover:bg-blue-600'>Post</button>
+                    </div>
+                </form>
+
+                @foreach ($post->comments as $comment)
+                    <x-post-comment :comment="$comment"/>
+                @endforeach
+
+            </x-panel>
+
             </section>
+        </article>
+
         </main>
     </section>
 </x-layout>

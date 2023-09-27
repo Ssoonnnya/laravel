@@ -23,10 +23,10 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => UserFactory::factory(),
             'category_id' => Category::factory(),
-            'title' => $this->faker->sentence,
-            'slug' => $this->faker->slug,
+            'title' => $this->faker->sentence(),
+            'slug' => $this->faker->slug(),
             'excerpt' => '<p>' . inplode('<p></p>', $this->faker->paragraph(2)) . '</p>',
             'body' => '<p>' . inplode('<p></p>', $this->faker->paragraph(6)) . '</p>',
         ];
