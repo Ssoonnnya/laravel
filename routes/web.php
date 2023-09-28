@@ -9,7 +9,10 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PostCommentsController;
 
 
-Route::get('ping', function(){
+Route::post('newsletter', function(){
+    request()->validate([
+        'email' => 'required|email'
+    ]);
 
     $mailchimp = new \MailchimpMarketing\ApiClient();
 
@@ -18,10 +21,21 @@ Route::get('ping', function(){
         'server' => 'us9'
     ]);
 
+    try{
+
     $response = $mailchimp->lists->addListMember("ac0012cb00",[
-        
+        'email_address' => request('email'),
     ]);
-        ddd($response);
+
+    } catch(\Exeption $e){
+
+        \Illuminate\Validation\ValidationException::withMessages([
+            'email' => 'This email could not be added to our newsletter list.'
+        ]);
+
+    }
+
+    return redirect('/')->with('success', 'You are now signed uo for our newsletter!');
 
 });
 
