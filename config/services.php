@@ -33,6 +33,7 @@ return [
 
     'mailchimp' => [
         'key' => env('MAILCHIMP_KEY'),
+        'lists' => ENV('MAILCHIMP_LISTS_SUBSCRIBERS'),
     ],
 
 ];
