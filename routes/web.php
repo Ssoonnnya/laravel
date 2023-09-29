@@ -7,7 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PostCommentsController;
-use App\Services\Newsletter;
+use App\Services\MailchimpNewsletter;
 use App\Http\Controllers\NewsletterController;
 
 
