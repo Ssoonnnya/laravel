@@ -4,8 +4,7 @@
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@3.10.3/dist/alpine.min.js" defer></script>
-
+<script src="//unpkg.com/alpinejs" defer></script>
 <style>
 
     html {
@@ -22,15 +21,24 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
+            <div class="mt-8 md:mt-0" style="display: flex">
 
                 @auth
+                <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</button>
+                        </x-slot>
 
-                    <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</span>
-                    <form method="POST" action="/logout">
-                        @csrf
-                        <button type="submit" class="text-xs font-semibold text-blue-500 ml-6">Log Out</button>
-                    </form>
+                        <x-dropdown-item href="/admin/dashboard">Dashboard</x-dropdown-item>
+                        <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')">New Post</x-dropdown-item>
+                        <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out</x-dropdown-item>
+
+                        <form id="logout-form" method="POST" action="/logout" class="hidden">
+
+                            @csrf
+
+                        </form>
+                    </x-dropdown>
 
                 @else
 
