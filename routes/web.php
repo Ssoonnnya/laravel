@@ -28,9 +28,17 @@ Route::get('login', [SessionController::class, 'create'])->middleware('guest');
 Route::post('login', [SessionController::class, 'store'])->middleware('guest');
 Route::post('logout', [SessionController::class, 'destroy'])->middleware('auth');
 
-Route::get('admin/posts/create', [AdminPostController::class, 'index'])->middleware('admin');
-Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
-Route::post('admin/posts', [PostController::class, 'store'])->middleware('admin');
 
+Route::middleware('can:admin')->group(function(){
+
+    Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('can:admin');
+    Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->middleware('can:admin');
+    Route::get('admin/posts/create', [AdminPostController::class, 'create'])->middleware('can:admin');
+
+    Route::post('admin/posts', [AdminPostController::class, 'store'])->middleware('can:admin');
+    Route::patch('admin/posts/{post}', [AdminPostController::class, 'update'])->middleware('can:admin');
+    Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy'])->middleware('can:admin');
+
+});
 
 

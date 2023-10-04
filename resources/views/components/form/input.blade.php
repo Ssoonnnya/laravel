@@ -8,10 +8,9 @@
            type="text"
            name="{{ $name }}"
            id="{{ $name }}"
-           value="{{ old($name) }}"
-           required>
+           >
 
-           {{ $attributes }}
+           {{ $attributes(['value' => old($name)]) }}
 
            <x-form.error name="{{ $name }}" />
 
